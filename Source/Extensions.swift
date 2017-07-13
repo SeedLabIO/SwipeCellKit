@@ -18,7 +18,14 @@ extension UITableView {
     
     func setGestureEnabled(_ enabled: Bool) {
         gestureRecognizers?.forEach {
-            guard $0 != panGestureRecognizer else { return }
+            guard $0 != panGestureRecognizer else {
+                return
+            }
+        
+            guard let recognizer = NSClassFromString("UISwipeDismissalGestureRecognizer"), !$0.isKind(of: recognizer) else {
+                $0.isEnabled = !enabled
+                return
+            }
             
             $0.isEnabled = enabled
         }
