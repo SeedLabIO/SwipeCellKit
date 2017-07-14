@@ -21,9 +21,9 @@ extension UITableView {
             guard $0 != panGestureRecognizer else {
                 return
             }
-        
+
             guard let recognizer = NSClassFromString("UISwipeDismissalGestureRecognizer"), !$0.isKind(of: recognizer) else {
-                $0.isEnabled = !enabled
+                $0.isEnabled = false
                 return
             }
             
